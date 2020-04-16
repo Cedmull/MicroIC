@@ -4,7 +4,7 @@ Microelectronics and IC design - VHDL project
 Hello :D
 
 Pour l'organisation, je propose qu'on suive ceci pour le github
-
+<div>
 master
   + labs
   |
@@ -27,7 +27,7 @@ master
       |
       + tous les fichiers .vhd nécessaires
       + des .md pour les explications si besoin
-  
+ </div> 
   Ca vous va ?
   
   PoilDeNezMagique au rapport ! 
