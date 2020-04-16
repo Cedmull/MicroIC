@@ -5,10 +5,10 @@ Hello :D
 
 Pour l'organisation, je propose qu'on suive ceci pour le github
 
-master
-  \+ labs
-  |
-  \+ tests (l'ensemble des tests que l'on va effectuer)
+master <br>
+  \+ labs <br>
+  |<br>
+  \+ tests (l'ensemble des tests que l'on va effectuer)<br>
   |   \+ test1 (un test)
   |   |   |
   |   |   \+ fichiers .vhd
