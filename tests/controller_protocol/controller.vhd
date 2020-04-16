@@ -17,18 +17,18 @@ architecture controller_arch of controller is
 begin
    controller_p : process (clk)
    begin
-   if rising_edge(clk) then
-   ready <= '1';
+      if rising_edge(clk) then
+         ready <= '1';
 
-   if (phase = 15) and (writing = '0') then
-   latch <= '1';
-   writing <= '1';
-   else
-   latch <= '0';
-   writing <= '0';
+         if (phase = 15) and (writing = '0') then
+            latch <= '1';
+            writing <= '1';
+         else
+            latch <= '0';
+            writing <= '0';
          end if;
 
-   if (phase = 15) and (writing = '1') then
+         if (phase = 15) and (writing = '1') then
             phase <= 0;
          elsif phase /= 15 then
             phase <= phase + 1;
@@ -37,6 +37,6 @@ begin
          if (ready = '1') and (writing = '0') then
             state(phase) <= data;
          end if;
-   end if;
+      end if;
    end process controller_p;
 end architecture controller_arch;
