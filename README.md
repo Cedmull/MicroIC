@@ -9,24 +9,24 @@ master <br>
   \+ labs <br>
   |<br>
   \+ tests (l'ensemble des tests que l'on va effectuer)<br>
-  |   \+ test1 (un test)
-  |   |   |
-  |   |   \+ fichiers .vhd
-  |   |   \+ README.md (pour expliquer le test effectué)
-  |   |
-  |   \+ test2 (un autre test..)
-  |   |   |
-  |   |   \+ fichiers .vhd
-  |   |   \+ README.md (pour expliquer le test effectué)
-  |   \+ test... (encore plein d'autres tests wouhouuu)
-  |       |
-  |       \+ fichiers .vhd
-  |       \+ README.md (pour expliquer le test effectué)
-  |
-  \+ stable (la dernière version du code stable qui fonctionne)
-      |
-      \+ tous les fichiers .vhd nécessaires
-      \+ des .md pour les explications si besoin
+  |   \+ test1 (un test)<br>
+  |   |   |<br>
+  |   |   \+ fichiers .vhd<br>
+  |   |   \+ README.md (pour expliquer le test effectué)<br>
+  |   |<br>
+  |   \+ test2 (un autre test..)<br>
+  |   |   |<br>
+  |   |   \+ fichiers .vhd<br>
+  |   |   \+ README.md (pour expliquer le test effectué)<br>
+  |   \+ test... (encore plein d'autres tests wouhouuu)<br>
+  |       |<br>
+  |       \+ fichiers .vhd<br>
+  |       \+ README.md (pour expliquer le test effectué)<br>
+  |<br>
+  \+ stable (la dernière version du code stable qui fonctionne)<br>
+      |<br>
+      \+ tous les fichiers .vhd nécessaires<br>
+      \+ des .md pour les explications si besoin<br>
  
   Ca vous va ?
   
