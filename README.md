@@ -5,28 +5,7 @@ Hello :D
 
 Pour l'organisation, je propose qu'on suive ceci pour le github
 
-master <br>
-  \+ labs <br>
-  |<br>
-  \+ tests (l'ensemble des tests que l'on va effectuer)<br>
-  |   \+ test1 (un test)<br>
-  |   |   |<br>
-  |   |   \+ fichiers .vhd<br>
-  |   |   \+ README.md (pour expliquer le test effectué)<br>
-  |   |<br>
-  |   \+ test2 (un autre test..)<br>
-  |   |   |<br>
-  |   |   \+ fichiers .vhd<br>
-  |   |   \+ README.md (pour expliquer le test effectué)<br>
-  |   \+ test... (encore plein d'autres tests wouhouuu)<br>
-  |       |<br>
-  |       \+ fichiers .vhd<br>
-  |       \+ README.md (pour expliquer le test effectué)<br>
-  |<br>
-  \+ stable (la dernière version du code stable qui fonctionne)<br>
-      |<br>
-      \+ tous les fichiers .vhd nécessaires<br>
-      \+ des .md pour les explications si besoin<br>
+<img src="https://cdn.discordapp.com/attachments/530773397450522626/700265582917845093/Capture_decran_du_2020-04-16_10-45-00.png" alt="tree" />
  
   Ca vous va ?
   
