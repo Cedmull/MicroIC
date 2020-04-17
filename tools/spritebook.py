@@ -23,7 +23,7 @@ def convertImg(path):
     for y in range(dims[0]):
         for x in range(dims[1]):
             if dims[2] < 4 or img[y][x][3] == 15:
-                rgb12.append("{0:04b}{0:04b}{0:04b}".format(img[y][x][0], img[y][x][1], img[y][x][2]))
+                rgb12.append("{:04b}{:04b}{:04b}".format(img[y][x][0], img[y][x][1], img[y][x][2]))
             else:
                 rgb12.append("uuuuuuuuuuuu")
     return rgb12
@@ -41,7 +41,7 @@ def writeBook(imgs, names):
             file.write(" \"{}\",".format(img[j]))
         file.write(" \"{}\");\n".format(img[j + 1]))
     file.write("end sprite_book;")
-    file.close
+    file.close()
 
 if __name__ == "__main__":
     main();
