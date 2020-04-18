@@ -9,6 +9,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 use ieee.std_logic_misc.all;
+use ieee.numeric_std.all;
 use work.map_book.all;
 use work.sprite_book.all;
 
@@ -65,11 +66,11 @@ begin
 
       -- Generate Screen display
       if(v_cnt >= 0) AND (v_cnt <= 799) AND (h_cnt >= 0) AND (h_cnt <= 599) then
-         tile_x := h_cnt / 50;
-         tile_y := v_cnt / 50;
+         tile_x := to_integer(unsigned(h_cnt)) / 50;
+         tile_y := to_integer(unsigned(v_cnt)) / 50;
 
-         sprite_x := h_cnt - (tile_x * 50);
-         sprite_y := v_cnt - (tile_y * 50);
+         sprite_x := to_integer(unsigned(h_cnt)) - (tile_x * 50);
+         sprite_y := to_integer(unsigned(v_cnt)) - (tile_y * 50);
 
          -- selects the tile's sprite at this location
          case map_1((tile_y * 16) + tile_x) is
