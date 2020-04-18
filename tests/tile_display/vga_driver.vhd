@@ -66,14 +66,14 @@ begin
 
       -- Generate Screen display
       if(v_cnt >= 0) AND (v_cnt <= 799) AND (h_cnt >= 0) AND (h_cnt <= 599) then
-         tile_x := to_integer(signed(h_cnt)) / 50;
-         tile_y := to_integer(signed(v_cnt)) / 50;
+         tile_x := to_integer(unsigned(h_cnt)) / 50;
+         tile_y := to_integer(unsigned(v_cnt)) / 50;
 
-         sprite_x := to_integer(signed(h_cnt)) - (tile_x * 50);
-         sprite_y := to_integer(signed(v_cnt)) - (tile_y * 50);
+         sprite_x := to_integer(unsigned(h_cnt)) - (tile_x * 50);
+         sprite_y := to_integer(unsigned(v_cnt)) - (tile_y * 50);
 
          -- selects the tile's sprite at this location
-         case map_1((tile_y * 16) + tile_x) is
+         case map_2((tile_y * 16) + tile_x) is
             when 0 => current_tile := blue_square;
             when 1 => current_tile := red_square;
             when others => current_tile := blue_square;
