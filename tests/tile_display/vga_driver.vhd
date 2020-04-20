@@ -127,18 +127,18 @@ begin
       end if;
 
       --Assign Physical Signals To VGA
-      oRed(0) <= color(0) AND video_en; --Red LSB
-      oRed(1) <= color(1) AND video_en; --Red LSB
-      oRed(2) <= color(2) AND video_en; --Red LSB
-      oRed(3) <= color(3) AND video_en; --Red LSB
+      oRed(0) <= color(8) AND video_en; --Red LSB
+      oRed(1) <= color(9) AND video_en; --Red LSB
+      oRed(2) <= color(10) AND video_en; --Red LSB
+      oRed(3) <= color(11) AND video_en; --Red LSB
       oGreen(0) <= color(4) AND video_en; --Red LSB
       oGreen(1) <= color(5) AND video_en; --Red LSB
       oGreen(2) <= color(6) AND video_en; --Red LSB
       oGreen(3) <= color(7) AND video_en; --Red LSB
-      oBlue(0) <= color(8) AND video_en; --Red LSB
-      oBlue(1) <= color(9) AND video_en; --Red LSB
-      oBlue(2) <= color(10) AND video_en; --Red LSB
-      oBlue(3) <= color(11) AND video_en; --Red LSB
+      oBlue(0) <= color(0) AND video_en; --Red LSB
+      oBlue(1) <= color(1) AND video_en; --Red LSB
+      oBlue(2) <= color(2) AND video_en; --Red LSB
+      oBlue(3) <= color(3) AND video_en; --Red LSB
 
       oHsync <= h_sync;
       oVsync <= v_sync;
