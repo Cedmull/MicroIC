@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity controller is port (
    clk   : in std_logic;
-   data  : in std_logic;
+   data  : inout std_logic;
    latch : inout std_logic;
    state : out std_logic_vector(15 downto 0)
 );
