@@ -11,7 +11,7 @@ use ieee.std_logic_1164.all;
 
 entity Gsensor_vga is
   port (
-	CLOCK_50                : in std_logic;   
+	CLOCK_50                : in std_logic;	
 	LED                     : out std_logic_vector(7 downto 0);   
 	KEY                     : in std_logic_vector(1 downto 0);   
 	G_SENSOR_CS_N           : out std_logic;   					-- G_Sensor chip select Pin_G5
@@ -92,5 +92,22 @@ begin
     	oHsync => GPIO_1(0),
     	oVsync => GPIO_1(1)
     );
+	 
+	-- u_snes_controller
+
+		u_snes_controller_1 : entity work.controller
+			port map(
+				clk => GPIO_1(31), 
+				data => 	GPIO_1(30),					
+				latch => GPIO_1(26)
+			);
+			
+		u_snes_controller_2 : entity work.controller
+			port map(
+				clk => GPIO_1(33), 
+				data => 	GPIO_1(32),					
+				latch => GPIO_1(28)
+			);
+    
     
 end synth;
