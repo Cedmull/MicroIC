@@ -16,10 +16,11 @@ port
 	go_down     : in std_logic; -- 	"	" below arrow	"	"	"	"	"	"
 	go_left   : in std_logic; -- 	"	" left arrow	"	"	"	"	"	"	
 	go_right  : in std_logic; -- 	"	" right arrow	"	"	"	"	"	"
+	push_start : in std_logic; -- if start lololol
 	
 	-- Control and initialization variables
 	player_flag   : in std_logic; -- '0' for player 1, '1' if player 2
-	
+	start_game	  : inout std_logic; -- '0' to start
 	-- OUTPUTs:
 	-- Player position and orientation
 	x_player     : buffer natural range 0     to 800;
@@ -36,9 +37,12 @@ begin
 		variable memo_x          : natural range 0 to 400;                 -- Memorizes and keep up to date the position of the player at any single time.
 		variable memo_y          : natural range 0 to 600;                 -- These variables are used in order to avoid moving the player while being 
 										     							                   -- displayed and also prevents the player to "enter" in a wall
+	
 	begin
 	
 		wait until rising_edge( CLOCK_50 );
+		
+		if push_start = '1' then
 		
 			if player_flag = '0' then 
 				memo_x := 125; -- if player 1
@@ -46,19 +50,30 @@ begin
 				memo_x := 325; -- if player 2
 			end if;
 			memo_y := 300;
-							
-				if go_up = '1' then
+		
+		else
+			if go_up = '1' then
 					memo_y := memo_y + 1;
-				end if;				
-				if go_down = '1' then
+			end if;				
+			if go_down = '1' then
 					memo_y := memo_y - 1;
-				end if;
-				if go_left = '1' then
+			end if;
+			if go_left = '1' then
 					memo_x := memo_x - 1;
-				end if;
-				if go_right = '1' then 
+			end if;
+			if go_right = '1' then 
 					memo_x := memo_x + 1;
-				end if;
+			end if;
+				
+		end if;
+		
+		y_player <= memo_y;
+			if player_flag = '0' then
+				x_player <= memo_x;
+			else
+				x_player <= memo_x + 350; -- Each player has one side of the screen (player 1 -> left, player 2 -> right)
+			end if;
+		
 				
 	end process get_player_position;
 	

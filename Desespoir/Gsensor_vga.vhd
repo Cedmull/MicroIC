@@ -11,7 +11,7 @@ use ieee.std_logic_1164.all;
 
 entity Gsensor_vga is
   port (
-	CLOCK_50                : in std_logic;   
+	CLOCK_50                : in std_logic:='1';   
 	LED                     : out std_logic_vector(7 downto 0);   
 	KEY                     : in std_logic_vector(1 downto 0);   
 	G_SENSOR_CS_N           : out std_logic;   					-- G_Sensor chip select Pin_G5
@@ -82,6 +82,10 @@ architecture synth of Gsensor_vga is
 	-- Player 2 position
 	signal x_player2            : INTEGER range 0 to 800;
 	signal y_player2            : INTEGER range 0 to 600;
+	
+	-- New game
+	
+	signal start_game : std_logic := '1';
 	
 
 begin
@@ -200,7 +204,9 @@ begin
 			go_down      => down_1,
 			go_left   	 => left_1,
 			go_right  	 => right_1,
+			push_start   => start_1,
 			player_flag  => '0',
+			start_game   => start_game,
 			
 			-- OUTPUTS
 			x_player     => x_player1,
@@ -217,7 +223,9 @@ begin
 			go_down      => down_2,
 			go_left    => left_2,
 			go_right   => right_2,
+			push_start   => start_2,
 			player_flag  => '1',
+			start_game   => start_game,
 			-- OUTPUTS
 			x_player     => x_player2,
 			y_player     => y_player2	
