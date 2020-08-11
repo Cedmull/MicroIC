@@ -25,7 +25,7 @@ port
 	-- Player position and orientation
 	x_player     : buffer natural range 0     to 800;
 	y_player     : buffer natural range 0     to 600;
-	cnt_move  	 : buffer natural range 0 		to 1000
+	cnt_move  	 : buffer natural range 0 		to 100000
 );
 end motion;
 
@@ -37,7 +37,7 @@ begin
 		                  -- These variables are used in order to avoid moving the player while being 
 			variable memo_x : integer range 0 to 600	;		-- displayed and also prevents the player to "enter" in a wall
 			variable memo_y : integer range 0 to 500;
-			variable counter :integer range 0 to 1000;
+			variable counter :integer range 0 to 100000;
 	
 	begin
 		
@@ -45,27 +45,36 @@ begin
 		
 		
 		counter := cnt_move;
-		if(counter = 1000) then
+		if(counter = 100000) then
 			
 			memo_x := x_player;
 			memo_y := y_player;
 			
 			if go_left = '1' then
-				memo_x := memo_x - 1;
+				memo_x := memo_x + 1;
 			end if; 
 			
 			if go_right = '1' then 
-				memo_x := memo_x + 1 ;
+				memo_x := memo_x - 1 ;
 			end if;
 			
-			memo_x := memo_x + 1;
+			if go_up = '1' then
+				memo_y := memo_y - 1;
+			end if;
+			
+			if go_down = '1' then
+				memo_y := memo_y + 1;
+			end if;
+			
 		
 			x_player <= memo_x;
+			y_player <= memo_y; 
 		
+		counter := 0;
 		cnt_move <= counter ; 
 	
 		else
-		counter := counter - 1 ;
+		counter := counter + 1 ;
 		cnt_move <= counter ;
 		end if;
 		
