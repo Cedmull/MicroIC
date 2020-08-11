@@ -10,6 +10,11 @@ use ieee.std_logic_1164.all;
 
 
 entity Gsensor_vga is
+
+	generic(
+		constant collision_radius	: natural := 30  
+	);
+	
   port (
 	CLOCK_50                : in std_logic:='1';   
 	LED                     : out std_logic_vector(7 downto 0);   
@@ -77,13 +82,18 @@ architecture synth of Gsensor_vga is
 	
 	-- Player 1 position
 	signal x_player1            : INTEGER range 0 to 800;
-	signal y_player1            : INTEGER range 0 to 600;                 
+	signal y_player1				 : INTEGER range 0 to 600;  
+--	signal x_player_tmp_1		 : INTEGER range 0 to 800;
+--	signal y_player_tmp_1		 : INTEGER range 0 to 600;
 	                                              
 	-- Player 2 position
 	signal x_player2            : INTEGER range 0 to 800;
 	signal y_player2            : INTEGER range 0 to 600;
+--	signal x_player_tmp_2		 : INTEGER range 0 to 800;
+--	signal y_player_tmp_2 		 : INTEGER range 0 to 600;
 	
-	signal cnt_move				 : INTEGER range 0 to 1000;
+	
+	signal cnt_move				 : INTEGER range 0 to 100000;
 	
 	-- New game
 	
@@ -221,7 +231,9 @@ begin
 			-- OUTPUTS
 			x_player     => x_player1,
 			y_player     => y_player1,
-			cnt_move     => cnt_move
+			cnt_move     => cnt_move,
+			x_player_2   => x_player2,
+			y_player_2   => y_player2
 		);
 				
 	player_2_motion: entity work.motion
@@ -240,7 +252,9 @@ begin
 			-- OUTPUTS
 			x_player     => x_player2,
 			y_player     => y_player2,	
-			cnt_move 	 => cnt_move
+			cnt_move 	 => cnt_move,
+			x_player_2   => x_player1,
+			y_player_2   => y_player1
 		);
     
 end synth;
