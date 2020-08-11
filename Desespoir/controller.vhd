@@ -4,9 +4,10 @@ use ieee.numeric_std.all;
 
 entity controller is port (
    CLOCK_50   : in std_logic;
+	-- SNES protocol signals
    data  : in std_logic;
    latch : out std_logic;
-	clk : out std_logic;
+   clk : out std_logic;
 	
 	-- Buttons
 	b : out std_logic :='0';
@@ -37,8 +38,8 @@ begin
 	begin
 		
 		wait until rising_edge( CLOCK_50 );
-	
-		if cnt >= 300 then -- Decreases the frequency (down to a 6us periodic one).
+		-- 6us period
+		if cnt >= 300 then 
 			cnt := 0;
 			internal_clock <= not internal_clock; 
 	
@@ -46,12 +47,12 @@ begin
 			latch <= '0';
 			iter := iter + 1;
 			
-			-- Latch inpulse
+			-- Latch init
 			if iter = 0 OR iter = 1 then
 				latch <= '1';
 			end if;
 			
-			-- Reads the value and sends the clock signal.
+			-- Reading
 			if iter = 3 then
 				clk <= '0';
 				b <= not data;
