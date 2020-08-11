@@ -84,8 +84,7 @@ begin
    begin
 
       wait until(iCLK'EVENT) AND (iCLK = '1');
-
-      -- Generate Screen display
+ -- Generate Screen display
 		
 		
 		-- Player 1
