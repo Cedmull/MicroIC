@@ -83,9 +83,11 @@ architecture synth of Gsensor_vga is
 	signal x_player2            : INTEGER range 0 to 800;
 	signal y_player2            : INTEGER range 0 to 600;
 	
+	signal cnt_move				 : INTEGER range 0 to 1000;
+	
 	-- New game
 	
-	signal start_game : std_logic := '1';
+	signal start_game : std_logic;
 	
 
 begin
@@ -135,6 +137,14 @@ begin
       iG_inT2 => G_SENSOR_inT,
       oLED => LED_xhdl1
     );
+	 
+  game_begins : entity work.out_of_game
+	 port map (
+		CLOCK_50     => CLOCK_50,
+		push_start_1 => start_1,
+		push_start_2 => start_2,
+		start_game => start_game
+	);
    
   u_vga_driver : entity work.vga_driver
     port map (
@@ -210,7 +220,8 @@ begin
 			
 			-- OUTPUTS
 			x_player     => x_player1,
-			y_player     => y_player1
+			y_player     => y_player1,
+			cnt_move     => cnt_move
 		);
 				
 	player_2_motion: entity work.motion
@@ -228,7 +239,8 @@ begin
 			start_game   => start_game,
 			-- OUTPUTS
 			x_player     => x_player2,
-			y_player     => y_player2	
+			y_player     => y_player2,	
+			cnt_move 	 => cnt_move
 		);
     
 end synth;
