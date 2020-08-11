@@ -92,6 +92,9 @@ begin
 		if(h_cnt >= xx_player1 - 15) AND (h_cnt <= xx_player1 +15) AND (v_cnt <= yy_player1+ 15) AND (v_cnt >= yy_player1 -15) then
 		color <= red_color;
 		
+		if(h_cnt >= xx_player2 - 15) AND (h_cnt <= xx_player2 +15) AND (v_cnt <= yy_player2+ 15) AND (v_cnt >= yy_player2 -15) then
+		color <= blue_color;
+		
 		elsif(v_cnt <= ring_min_y +15) AND (v_cnt >= ring_min_y - 25) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_min_x +15) then
 			color <= grey_color;
 			
