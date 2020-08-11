@@ -88,13 +88,14 @@ begin
       -- Generate Screen display
 		
 		
-		
+		-- Player 1
 		if(h_cnt >= xx_player1 - 15) AND (h_cnt <= xx_player1 +15) AND (v_cnt <= yy_player1+ 15) AND (v_cnt >= yy_player1 -15) then
 		color <= red_color;
-		
+		-- Player 2
 		elsif(h_cnt >= xx_player2 - 15) AND (h_cnt <= xx_player2 +15) AND (v_cnt <= yy_player2+ 15) AND (v_cnt >= yy_player2 -15) then
 		color <= blue_color;
 		
+		-- Top limit
 		elsif(v_cnt <= ring_min_y +15) AND (v_cnt >= ring_min_y - 25) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_min_x +15) then
 			color <= grey_color;
 			
@@ -110,7 +111,26 @@ begin
 		elsif(v_cnt = ring_min_y - 24) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_max_x) then
 			color <= grey_color;
 			
+		-- Bottom limit
 		
+	
+		elsif(v_cnt <= ring_max_y) AND (v_cnt >= ring_max_y - 45) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_min_x +15) then
+			color <= grey_color;
+			
+		elsif(v_cnt <= ring_max_y) AND (v_cnt >= ring_max_y - 45) AND (h_cnt <= ring_max_x) AND (h_cnt >= ring_max_x -15) then
+			color <= grey_color;
+		
+		elsif(v_cnt = ring_max_y - 16) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_max_x) then
+			color <= grey_color;
+			
+		elsif(v_cnt = ring_max_y - 30) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_max_x) then
+			color <= grey_color;
+		
+		elsif(v_cnt = ring_max_y - 44) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_max_x) then
+			color <= grey_color;
+		
+			
+		-- Ring
 	elsif(v_cnt >= ring_min_y) AND (v_cnt <= ring_max_y) AND (h_cnt >= ring_min_x) AND (h_cnt<= ring_max_x) then
 		color <= white_color;
 		
