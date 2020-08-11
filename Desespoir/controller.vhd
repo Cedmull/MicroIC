@@ -54,51 +54,51 @@ begin
 			-- Reads the value and sends the clock signal.
 			if iter = 3 then
 				clk <= '0';
-				b <= data;
+				b <= not data;
 			end if;
 			if iter = 5 then
 				clk <= '0';
-				y <= data;
+				y <= not data;
 			end if;
 			if iter = 7 then
 				clk <= '0';
-				selectt <= data;
+				selectt <= not data;
 			end if;
 			if iter = 9 then
 				clk <= '0';
-				start <=  data;
+				start <=  not data;
 			end if;
 			if iter = 11 then
 				clk <= '0';
-				down <=  data;
+				down <=  not data;
 			end if;			
 			if iter = 13 then
 				clk <= '0';
-				up <=  data;
+				up <=  not data;
 			end if;
 			if iter = 15 then
 				clk <= '0';
-				leftt <=  data;
+				leftt <=  not data;
 			end if;
 			if iter = 17 then
 				clk <= '0';
-				rightt <=  data;
+				rightt <=  not data;
 			end if;
 			if iter = 19 then
 				clk <= '0';
-				a <=  data;
+				a <=  not data;
 			end if;
 			if iter = 21 then
 				clk <= '0';
-				x <=  data;
+				x <=  not data;
 			end if;
 			if iter = 23 then
 				clk <= '0';
-				l <=  data;
+				l <= not data;
 			end if;
 			if iter = 25 then
 				clk <= '0';
-				r <=  data;
+				r <=  not data;
 			end if;
 			if iter = 27 OR iter = 29 OR iter = 31 then
 				clk <= '0';
