@@ -20,11 +20,12 @@ port
 	
 	-- Control and initialization variables
 	player_flag   : in std_logic; -- '0' for player 1, '1' if player 2
-	start_game	  : inout std_logic; -- '0' to start
+	start_game	  : buffer std_logic; -- '0' to start
 	-- OUTPUTs:
 	-- Player position and orientation
 	x_player     : buffer natural range 0     to 800;
-	y_player     : buffer natural range 0     to 600
+	y_player     : buffer natural range 0     to 600;
+	cnt_move  	 : buffer natural range 0 		to 1000
 );
 end motion;
 
@@ -33,46 +34,40 @@ architecture motion_arch of motion is
 begin
 	
 	get_player_position: process
-		 
-		variable memo_x          : natural range 0 to 400;                 -- Memorizes and keep up to date the position of the player at any single time.
-		variable memo_y          : natural range 0 to 600;                 -- These variables are used in order to avoid moving the player while being 
-										     							                   -- displayed and also prevents the player to "enter" in a wall
+		                  -- These variables are used in order to avoid moving the player while being 
+			variable memo_x : integer range 0 to 600	;		-- displayed and also prevents the player to "enter" in a wall
+			variable memo_y : integer range 0 to 500;
+			variable counter :integer range 0 to 1000;
 	
 	begin
-	
+		
 		wait until rising_edge( CLOCK_50 );
 		
-		if push_start = '1' then
 		
-			if player_flag = '0' then 
-				memo_x := 125; -- if player 1
-			else 
-				memo_x := 325; -- if player 2
-			end if;
-			memo_y := 300;
-		
-		else
-			if go_up = '1' then
-					memo_y := memo_y + 1;
-			end if;				
-			if go_down = '1' then
-					memo_y := memo_y - 1;
-			end if;
+		counter := cnt_move;
+		if(counter = 1000) then
+			
+			memo_x := x_player;
+			memo_y := y_player;
+			
 			if go_left = '1' then
-					memo_x := memo_x - 1;
-			end if;
+				memo_x := memo_x - 1;
+			end if; 
+			
 			if go_right = '1' then 
-					memo_x := memo_x + 1;
+				memo_x := memo_x + 1 ;
 			end if;
-				
-		end if;
+			
+			memo_x := memo_x + 1;
 		
-		y_player <= memo_y;
-			if player_flag = '0' then
-				x_player <= memo_x;
-			else
-				x_player <= memo_x + 350; -- Each player has one side of the screen (player 1 -> left, player 2 -> right)
-			end if;
+			x_player <= memo_x;
+		
+		cnt_move <= counter ; 
+	
+		else
+		counter := counter - 1 ;
+		cnt_move <= counter ;
+		end if;
 		
 				
 	end process get_player_position;
