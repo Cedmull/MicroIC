@@ -27,13 +27,18 @@ begin
 		
 		wait until rising_edge( CLOCK_50 );
 		
-		is_pushed_1 <= push_start_1 ;
-		is_pushed_2 <= push_start_2 ; 
+		if(start_game = '1') then
 		
-		if(is_pushed_1 = '1') OR (is_pushed_2 = '1') then
-			launch <= '0';
-			start_game <= launch;
+			is_pushed_1 <= push_start_1 ;
+			is_pushed_2 <= push_start_2 ; 
+		
+			if(is_pushed_1 = '1') OR (is_pushed_2 = '1') then
+				launch <= '0';
+				start_game <= launch;
+			end if;
 		end if;
 	end process;
+	
+end be_cool;
 	
 end be_cool;
