@@ -26,12 +26,12 @@ entity Gsensor_vga is
 	GPIO_1    				   : inout std_logic_vector(33 downto 0);
 	
 	
-	-- snes1
+	-- snes1 communication
 	clk_snes1	: out std_logic;
 	latch_snes1	: out std_logic;
 	data_snes1	: in std_logic;
 		
-	-- snes2
+	-- snes2 communication
 	clk_snes2	: out std_logic;
 	latch_snes2	: out std_logic;
 	data_snes2	: in std_logic
@@ -52,7 +52,7 @@ architecture synth of Gsensor_vga is
   signal G_SENSOR_CS_N_xhdl2      :  std_logic;   
   signal I2C_SCLK_xhdl3           :  std_logic;
 
--- Snes1
+	-- Snes1 buttons
 	signal b_1      : std_logic;
 	signal y_1      : std_logic;
 	signal select_1 : std_logic;
@@ -66,7 +66,7 @@ architecture synth of Gsensor_vga is
 	signal l_1      : std_logic;
 	signal r_1      : std_logic;
 	
-	-- Snes2
+	-- Snes2 buttons
 	signal b_2      : std_logic;
 	signal y_2      : std_logic;
 	signal select_2 : std_logic;
@@ -80,22 +80,19 @@ architecture synth of Gsensor_vga is
 	signal l_2      : std_logic;
 	signal r_2      : std_logic;  
 	
-	-- Player 1 position
+	-- Player 1 position 
 	signal x_player1            : INTEGER range 0 to 800;
-	signal y_player1				 : INTEGER range 0 to 600;  
---	signal x_player_tmp_1		 : INTEGER range 0 to 800;
---	signal y_player_tmp_1		 : INTEGER range 0 to 600;
-	                                              
+	signal y_player1	    : INTEGER range 0 to 600;  
+
+	                                             
 	-- Player 2 position
 	signal x_player2            : INTEGER range 0 to 800;
 	signal y_player2            : INTEGER range 0 to 600;
---	signal x_player_tmp_2		 : INTEGER range 0 to 800;
---	signal y_player_tmp_2 		 : INTEGER range 0 to 600;
 	
-	
+	-- Speed counter
 	signal cnt_move				 : INTEGER range 0 to 100000;
 	
-	-- New game
+	-- New game variable
 	
 	signal start_game : std_logic;
 	
@@ -147,7 +144,7 @@ begin
       iG_inT2 => G_SENSOR_inT,
       oLED => LED_xhdl1
     );
-	 
+	 -- Starting a game with start
   game_begins : entity work.out_of_game
 	 port map (
 		CLOCK_50     => CLOCK_50,
@@ -155,7 +152,7 @@ begin
 		push_start_2 => start_2,
 		start_game => start_game
 	);
-   
+   -- VGA signal and synchro of the colours
   u_vga_driver : entity work.vga_driver
     port map (
     	iCLK => CLOCK_50,
@@ -172,7 +169,7 @@ begin
 		yy_player1 => y_player1,
 		yy_player2 => y_player2
     );
-	 
+	 -- Read the controls of snes1
 	u_snes1: entity work.controller
 		
 		port map(
@@ -193,7 +190,7 @@ begin
 			l            => l_1,
 			r            => r_1
 		);
-		
+		-- Read the controls of snes2
 	u_snes2: entity work.controller
 		
 		port map(
@@ -215,6 +212,7 @@ begin
 			r            => r_2
 		);
 		
+		-- Position and motion of player 1
 	player1_motion: entity work.motion
 	
 		port map(
@@ -235,7 +233,7 @@ begin
 			x_player_2   => x_player2,
 			y_player_2   => y_player2
 		);
-				
+		-- Position and motion of player 2	
 	player_2_motion: entity work.motion
 		-- idem than for player 1
 		
