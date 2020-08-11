@@ -225,7 +225,7 @@ begin
 			go_left   	 => left_1,
 			go_right  	 => right_1,
 			push_start   => start_1,
-			player_flag  => '0',
+			player_id  => '0',
 			start_game   => start_game,
 			
 			-- OUTPUTS
@@ -247,7 +247,7 @@ begin
 			go_left    => left_2,
 			go_right   => right_2,
 			push_start   => start_2,
-			player_flag  => '1',
+			player_id  => '1',
 			start_game   => start_game,
 			-- OUTPUTS
 			x_player     => x_player2,
