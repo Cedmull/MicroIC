@@ -10,8 +10,7 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
-use work.map_book.all;
-use work.sprite_book.all;
+
 
 entity vga_driver is
 
@@ -20,6 +19,7 @@ entity vga_driver is
 			constant black_color : std_logic_vector(11 downto 0) := "000000000000";
 			constant red_color : std_logic_vector(11 downto 0) := "111001000011";
 			constant blue_color : std_logic_vector(11 downto 0) := "001110011101";
+			constant grey_color : std_logic_vector(11 downto 0) := "011001100110";
 			
 			constant ring_min_x 	: natural := 70;
 			constant ring_max_x  : natural := 730;
@@ -44,8 +44,8 @@ entity vga_driver is
 	yy_player1          : in natural range 0 to 600;
 
 		-- Player 2
-	xx_player2          : in natural range 0 to 800;
-	yy_player2          : in natural range 0 to 600
+	xx_player2          : in natural range 0 to 800 ;
+	yy_player2          : in natural range 0 to 600 
 	
 	 
    );
@@ -80,25 +80,37 @@ begin
    video_en <= horizontal_en AND vertical_en;
 
    process
-      variable tile_x : integer range 0 to 15;
-      variable tile_y : integer range 0 to 11;
-      variable sprite_x, sprite_y : integer range 0 to 49;
-      variable current_tile : sprite;
-      variable tile_pindex  : integer range 0 to 2499; -- current pixel index in the tile
+
    begin
 
       wait until(iCLK'EVENT) AND (iCLK = '1');
 
       -- Generate Screen display
 		
+		
+		
 		if(h_cnt >= xx_player1 - 15) AND (h_cnt <= xx_player1 +15) AND (v_cnt <= yy_player1+ 15) AND (v_cnt >= yy_player1 -15) then
 		color <= red_color;
 		
-		elsif(h_cnt >= xx_player2 - 15) AND (h_cnt <= xx_player2 +15) AND (v_cnt <= yy_player2+ 15) AND (v_cnt >= yy_player2 -15) then
-		color <= blue_color;
+		elsif(v_cnt <= ring_min_y +15) AND (v_cnt >= ring_min_y - 25) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_min_x +15) then
+			color <= grey_color;
+			
+		elsif(v_cnt <= ring_min_y +15) AND (v_cnt >= ring_min_y - 25) AND (h_cnt <= ring_max_x) AND (h_cnt >= ring_max_x -15) then
+			color <= grey_color;
 		
-		elsif(v_cnt >= ring_min_y) AND (v_cnt <= ring_max_y) AND (h_cnt >= ring_min_x) AND (h_cnt<= ring_max_x) then
+		elsif(v_cnt = ring_min_y - 8) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_max_x) then
+			color <= grey_color;
+			
+		elsif(v_cnt = ring_min_y - 16) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_max_x) then
+			color <= grey_color;
+		
+		elsif(v_cnt = ring_min_y - 24) AND (h_cnt >= ring_min_x) AND (h_cnt <= ring_max_x) then
+			color <= grey_color;
+			
+		
+	elsif(v_cnt >= ring_min_y) AND (v_cnt <= ring_max_y) AND (h_cnt >= ring_min_x) AND (h_cnt<= ring_max_x) then
 		color <= white_color;
+		
 		
 		else
 		color <= black_color;
