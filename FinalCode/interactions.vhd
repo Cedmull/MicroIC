@@ -39,7 +39,7 @@ begin
 		begin  
 		
 			wait until rising_edge( CLOCK50 ) ;
-			
+			-- Init
 			if (end_push <= '1') then
 					is_pushed <= '0';
 					pushed_down <= '0';
@@ -50,7 +50,7 @@ begin
 			
 			if(is_pushed = '0') then 
 			
-				
+				-- Checking if a player is pushed for all directions
 				if  touching_down = '1' AND state_a = '1' AND state_down = '1' then
 					pushed_down <= '1' ;
 					is_pushed <= '1';
