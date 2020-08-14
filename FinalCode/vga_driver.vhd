@@ -1,10 +1,3 @@
----------------------------------------------------------------------------------
--- vga_driver.vhd
--- Path: gsensor.vhd -> vga_driver.vhd
--- mremacle@ulg.ac.be  23/01/2014
---
----------------------------------------------------------------------------------
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
@@ -15,13 +8,14 @@ use ieee.numeric_std.all;
 entity vga_driver is
 
 	generic (
+			-- Colours constants
 			constant white_color : std_logic_vector(11 downto 0) := "111011101110";
 			constant beige_color : std_logic_vector(11 downto 0) := "101110110111";
 			constant black_color : std_logic_vector(11 downto 0) := "000000000000";
 			constant red_color : std_logic_vector(11 downto 0) := "111001000011";
 			constant blue_color : std_logic_vector(11 downto 0) := "001110011101";
 			constant grey_color : std_logic_vector(11 downto 0) := "011001100110";
-			
+			-- Ring border constants
 			constant ring_min_x 	: natural := 70;
 			constant ring_max_x  : natural := 730;
 			constant ring_min_y	: natural := 30;
@@ -40,15 +34,15 @@ entity vga_driver is
       oHsync : out std_logic;
       oVsync : out std_logic;
 		
-		-- Player 1
+		-- Player 1 display
 	xx_player1          : in natural range 0 to 800;
 	yy_player1          : in natural range 0 to 600;
 
-		-- Player 2
+		-- Player 2 display 
 	xx_player2          : in natural range 0 to 800 ;
 	yy_player2          : in natural range 0 to 600 ;
 	
-		--Scores
+		-- Scores
 	score_1 				  : in integer range 0 to 3;
 	score_2 				  : in integer range 0 to 3
 	 
