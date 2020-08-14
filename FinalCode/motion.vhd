@@ -7,7 +7,7 @@ entity motion is
 
 port
 (
-CLOCK_50   : in std_logic; -- 50 MHz clock (The FPGA frequency)
+CLOCK_50   : in std_logic; -- 50 MHz
 	
 	-- Controller
 	go_up : in std_logic; -- '1' if up button is pushed
@@ -21,9 +21,9 @@ CLOCK_50   : in std_logic; -- 50 MHz clock (The FPGA frequency)
 	player_id   : in std_logic; -- '0' for player 1 and '1' if player 2
 	-- Game init
 	start_game	: in std_logic; -- '0' to start
-	-- Interractions
-	is_pushed   : in std_logic;
-	pushed_down : in std_logic;
+	-- Interractions 
+	is_pushed   : in std_logic; -- '1' if a player is pushed
+	pushed_down : in std_logic; 
 	pushed_up 	: in std_logic;
 	pushed_left : in std_logic;
 	pushed_right : in std_logic;
@@ -159,7 +159,7 @@ begin
 				touching_right <= '0' ;
 			end if; 
 			
-			-- TP move
+			-- TP action
 			if push_b = '1' AND player_tp = '1' AND (tmp_x_2 - 400 > 32 OR tmp_x_2 - 400 < -32 OR tmp_y_2 -300 > 32 OR tmp_y_2 -300 < -32) then
 				tmp_x := 400;
 				tmp_y := 300;
