@@ -15,6 +15,7 @@ port
 	go_left   : in std_logic; -- 	'1' if left button is pushed	
 	go_right  : in std_logic; -- 	'1' if right button is pushed
 	push_start : in std_logic; -- 	'1' if start button is pushed
+	push_b : in std_logic;-- 	'1' if b button is pushed
 	
 	-- Player info
 	player_id   	  : in std_logic; -- '0' for player 1 and '1' for player 2
@@ -27,8 +28,15 @@ port
 	x_player_2   : in natural range 0 	  to 800;
 	y_player_2   : in natural range 0	  to 600;
 	
+	-- Player interaction
+	is_pushed   : in std_logic;
+	pushed_down : in std_logic;
+	pushed_up 	: in std_logic;
+	pushed_left : in std_logic;
+	pushed_right : in std_logic;
+	
 	-- Speed and motion counter
-	cnt_move     : buffer natural range 0 to 100000
+	cnt_move     : buffer natural range 0 to 100000;
 	cnt_push		 : buffer natural range 0 		to 50000;
 	cnt_push_2   : buffer natural range 0 		to 200;
 	
