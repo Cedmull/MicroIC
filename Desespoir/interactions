@@ -4,7 +4,7 @@ use ieee.std_logic_unsigned.all;
 use ieee.std_logic_misc.all;
 use ieee.numeric_std.all;
 
-entity interaction is
+entity interactions is
 
 	port(
 	
@@ -22,14 +22,15 @@ entity interaction is
 		pushed_down : out std_logic ;
 		pushed_up : out std_logic ; 
 		pushed_left : out std_logic ;
-		pushed_right : out std_logic 
+		pushed_right : out std_logic;
+		end_push : in std_logic
 		
 		
 	);
 	
 end entity;
 
-architecture inter_arch of interaction is 
+architecture inter_arch of interactions is 
 
 begin 
 
@@ -39,10 +40,20 @@ begin
 		begin  
 		
 			wait until rising_edge( CLOCK50 ) ;
+			
+			if (end_push <= '1') then
+					is_pushed <= '0';
+					pushed_down <= '0';
+					pushed_up <= '0';
+					pushed_left <= '0';
+					pushed_right <= '0';
+			end if;
+			
 			if(is_pushed = '0') then 
+			
 				
 				if  touching_down = '1' AND state_a = '1' AND state_down = '1' then
-					push_down <= '1' ;
+					pushed_down <= '1' ;
 					is_pushed <= '1';
 				end if;
 				
@@ -60,6 +71,8 @@ begin
 					pushed_right <= '1' ;
 					is_pushed <= '1' ;
 				end if;
+				
+				
 			
 			end if; 
 			
