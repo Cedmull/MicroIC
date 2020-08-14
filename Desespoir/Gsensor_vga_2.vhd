@@ -96,7 +96,8 @@ architecture synth of Gsensor_vga is
 	signal touching_down_1		: std_logic;
 	signal touching_up_1	 		: std_logic;
 	signal touching_left_1		: std_logic;
-	signal touching_right_1 	: std_logic;                                              
+	signal touching_right_1 	: std_logic; 
+	signal end_push_1 			: std_logic := '1';
 
 	-- Player 2 position
 	signal x_player2           : INTEGER range 0 to 800;
@@ -114,7 +115,8 @@ architecture synth of Gsensor_vga is
 	signal touching_down_2		: std_logic;
 	signal touching_up_2 		: std_logic;
 	signal touching_left_2		: std_logic;
-	signal touching_right_2 	: std_logic;  
+	signal touching_right_2 	: std_logic; 
+	signal end_push_2 			: std_logic := '1';
 	
 	
 	signal cnt_move				: INTEGER range 0 to 100000;
@@ -251,6 +253,7 @@ begin
 			go_left   	 => left_1,
 			go_right  	 => right_1,
 			push_start   => start_1,
+			push_b       => b_1,
 			player_id  => '0',
 			start_game   => start_game,
 			
@@ -271,7 +274,8 @@ begin
 			pushed_left => pushed_left_1,
 			pushed_right => pushed_right_1,
 			pushed_up => pushed_up_1,
-			pushed_down => pushed_down_1
+			pushed_down => pushed_down_1,
+			end_push => end_push_1
 		
 		);
 				
@@ -286,6 +290,7 @@ begin
 			go_left    => left_2,
 			go_right   => right_2,
 			push_start   => start_2,
+			push_b     => b_2,
 			player_id  => '1',
 			start_game   => start_game,
 			-- OUTPUTS
@@ -305,14 +310,15 @@ begin
 			pushed_left => pushed_left_2,
 			pushed_right => pushed_right_2,
 			pushed_up => pushed_up_2,
-			pushed_down => pushed_down_2
+			pushed_down => pushed_down_2,
+			end_push => end_push_2
 		
 		);
 		
 	player_1_interact: entity work.interactions
 		
 		port map(
-			CLOCK50 			=> CLOCK50,
+			CLOCK50 			=> CLOCK_50,
 			is_pushed 		=> is_pushed_2,
 			touching_up		=> touching_up_1,
 			touching_down	=>	touching_down_1,
@@ -326,14 +332,15 @@ begin
 			pushed_down 	=> pushed_down_1,
 			pushed_up		=> pushed_up_1,
 			pushed_left 	=> pushed_left_1,
-			pushed_right   => pushed_right_1
+			pushed_right   => pushed_right_1,
+			end_push 		=> end_push_1
 			
 		);
 		
 	player_2_interact: entity work.interactions
 		
 		port map(
-			CLOCK50 			=> CLOCK50,
+			CLOCK50 			=> CLOCK_50,
 			is_pushed 		=> is_pushed_1,
 			touching_up		=> touching_up_2,
 			touching_down	=>	touching_down_2,
@@ -347,7 +354,8 @@ begin
 			pushed_down 	=> pushed_down_2,
 			pushed_up		=> pushed_up_2,
 			pushed_left 	=> pushed_left_2,
-			pushed_right   => pushed_right_2
+			pushed_right   => pushed_right_2,
+			end_push 		=> end_push_2
 			
 		);
 		
