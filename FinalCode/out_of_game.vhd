@@ -27,7 +27,7 @@ architecture resets of out_of_game is
 	
 begin
 
-	set_start_game : process
+	set_start_game : process -- Scores management and reset of the game
 	
 		variable score_tmp_1 : integer range 0 to 3;
 		variable score_tmp_2 : integer range 0 to 3;
